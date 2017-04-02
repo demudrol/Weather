@@ -15,13 +15,13 @@ class ManagerData {
     func loadJSON() {
         let realm = try! Realm()
         let url = "http://api.openweathermap.org/data/2.5/forecast?q=London&appid=f43cd937d74356c1052dcfc1559435bd"
-        var onlineWeather: WeatherData = WeatherData()
+        let onlineWeather: WeatherData = WeatherData()
         Alamofire.request(url, method: .get).validate().responseJSON { response in
             switch response.result {
             case .success(let value):
                 let json = JSON(value)
+                print ("\(onlineWeather.city_name)")
                 onlineWeather.city_name = json["city"]["name"].stringValue
-                
                 for (_, subJson) in json["list"] {
                     let tmpTemp = Temp()
                     tmpTemp.t = subJson["main"]["temp"].doubleValue
