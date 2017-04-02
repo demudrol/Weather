@@ -30,9 +30,12 @@ class ManagerData {
                     onlineWeather.tempList.append(tmpTemp)
                 }
                 try! realm.write {
+                    realm.deleteAll()
+                }
+                try! realm.write {
                     realm.add(onlineWeather)
                 }
-                print(onlineWeather)
+//                print(onlineWeather)
             case .failure(let error):
                 print(error)
             }

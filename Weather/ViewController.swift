@@ -9,23 +9,21 @@
 import UIKit
 import RealmSwift
 
-class ViewController: UIViewController {
+class ViewController: UITableViewController {
     let manager: ManagerData = ManagerData()
     override func viewDidLoad() {
         manager.loadJSON()
+        print("-----------------------------------------------")
         super.viewDidLoad()
         print(Realm.Configuration.defaultConfiguration.fileURL!)
-//        let realm = try! Realm()
-//        let dataFromDB = realm.objects(WeatherData)
-//        print(dataFromDB)
+        print("-----------------------------------------------")
+        let realm = try! Realm()
+        let data = realm.objects(WeatherData.self)
+        print("\(data)")
+        print("-----------------------------------------------")
         //        manager.loadJSON()
         
         // Do any additional setup after loading the view, typically from a nib.
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
